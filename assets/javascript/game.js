@@ -1,87 +1,84 @@
-
-    		
 var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",];
 
-var wins = 0;
-var losses = 0;
-var numGuesses = 9;
-var guessChoices = [];
+    		 var wins = 0;
+    		 var losses = 0;
+    		 var numGuesses = 9;
+    		 var guessChoices = [];
 
-document.onkeyup = function(event) {
+    		 document.onkeyup = function(event) {
 
-    var userGuess = event.key;
+    		 	var userGuess = event.key;
 
-    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+    		 	var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
-    var options = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",];
-    
+    		 	var options = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",];
+    		 	
 
-   if (options.indexOf(userGuess) > -1) {
+    			if (options.indexOf(userGuess) > -1) {
 
-       if (userGuess === computerGuess) {
-           wins++;
-           numGuesses = 9;
-           guessChoices = [];
-       }
+    				if (userGuess === computerGuess) {
+    					wins++;
+    					numGuesses = 9;
+    					guessChoices = [];
+    				}
 
-       if (userGuess != computerGuess) {
-           numGuesses --;
-           guessChoices.push(userGuess);
-       }
+    				if (userGuess != computerGuess) {
+    					numGuesses --;
+    					guessChoices.push(userGuess);
+    				}
 
-       if (numGuesses === 0) {
+    				if (numGuesses === 0) {
 
-       numGuesses = 9;
-       losses ++;
-       guessChoices = [];
+    				numGuesses = 9;
+    				losses ++;
+    				guessChoices = [];
 
-       
-   }
+    				
+    			}
 
-   var html = 
-   "<h1> The Psychic Game </h1>" +
-   "<p>Guess what letter I'm thinking of!</p>" +
-   "<p>Wins: " + wins + "</p>" +
-   "<p>Losses: " + losses + "</p>" +
-   "<p>Guesses Left: " + numGuesses + "</p>" +
-   "<p>Your Guesses so far: " + guessChoices.join(", ") + "</p>";
+    			var html = 
+    			"<h1> The Psychic Game </h1>" +
+    			"<p>Guess what letter I'm thinking of!</p>" +
+    			"<p>Wins: " + wins + "</p>" +
+    			"<p>Losses: " + losses + "</p>" +
+    			"<p>Guesses Left: " + numGuesses + "</p>" +
+    			"<p>Your Guesses so far: " + guessChoices.join(", ") + "</p>";
 
-   document.querySelector("#game").innerHTML = html;
-   }
+    			document.querySelector("#game").innerHTML = html;
+    			}
 
-   if (options.indexOf(userGuess) > -1) {
-if (userGuess === computerGuess) {
-wins++;
-numGuesses = 9;
-guessChoices = [];
-}
-else {
-if (guessChoices.includes(userGuess)) {
-// Code for duplicate guess
-var isDuplicate = false;
+                if (options.indexOf(userGuess) > -1) {
+    if (userGuess === computerGuess) {
+        wins++;
+        numGuesses = 9;
+        guessChoices = [];
+    }
+    else {
+        if (guessChoices.includes(userGuess)) {
+            // Code for duplicate guess
+            var isDuplicate = false;
 for (var i = 0; i < userAnswers.length; i++) { //for every previous answer
-if (currentAnswer == userAnswers[i]) { //check if the current answer is a previous one
-isDuplicate = true;
-break;
-}
+    if (currentAnswer == userAnswers[i]) { //check if the current answer is a previous one
+        isDuplicate = true;
+        break;
+    }
 }
 if (!isDuplicate) {
-userAnswers[userAnswers.length] = currentAnswer;
+    userAnswers[userAnswers.length] = currentAnswer;
 }
+            
+        }
+        else {
+            numGuesses--;
+            guessChoices.push(userGuess);
+        }
+    }
 
-}
-else {
-numGuesses--;
-guessChoices.push(userGuess);
-}
-}
-
-if (numGuesses === 0) {
-numGuesses = 9;
-losses++;
-guessChoices = [];
-}
+    if (numGuesses === 0) {
+        numGuesses = 9;
+        losses++;
+        guessChoices = [];
+    }
 }   
-   
-};
-
+                
+    		};
